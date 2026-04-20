@@ -14,18 +14,20 @@ func main() {
 
 	fmt.Println("----- Copia Segura --------")
 	matriz3 := [][]int{{1, 2}, {3, 4}}
-	matriz4 := make([][]int, len(matriz3))
-	copyMatriz(matriz3, matriz4)
+	matriz4 := copyMatriz(matriz3)
 	matriz3[0][0] = 99
 	fmt.Println(matriz3)
 	fmt.Println(matriz4)
 	fmt.Println()
 }
 
-func copyMatriz(m1 [][]int, m2 [][]int) {
-	// percorre linha por linha
-	for i := range m1 {
-		m2[i] = make([]int, len(m1[i]))
-		copy(m2[i], m1[i])
+func copyMatriz(matriz [][]int) [][]int {
+	m2 := make([][]int, len(matriz))
+
+	for i, slice := range matriz {
+		m2[i] = make([]int, len(slice))
+		copy(m2[i], slice)
 	}
+
+	return m2
 }
